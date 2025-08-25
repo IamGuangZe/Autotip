@@ -17,6 +17,7 @@ public class LoginRequest implements Request<LoginReply> {
     private final GameProfile profile;
     private final String hash;
     private final int tips;
+    private Minecraft mc = Minecraft.getMinecraft();
 
     private LoginRequest(Autotip autotip, GameProfile profile, String hash, int tips) {
         this.autotip = autotip;
@@ -41,7 +42,7 @@ public class LoginRequest implements Request<LoginReply> {
                 .addParameter("hash", this.hash)
                 .build();
 
-        private Minecraft mc = Minecraft.getMinecraft();
+        
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getName()));
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getId().toString().replace("-", "")));
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.tips));

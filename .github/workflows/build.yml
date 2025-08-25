@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build:
@@ -25,22 +25,26 @@ jobs:
         distribution: 'temurin'
         java-version: 8
 
-    # 3. 缓存 Gradle
+    # 3. 缓存 Gradle 依赖
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper/
-        key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle.properties') }}
         restore-keys: |
           gradle-
 
-    # 4. 构建 Forge Mod
-    - name: Build mod
-      run: ./gradlew build --no-daemon --refresh-dependencies
+    # 4. 安装系统 Gradle
+    - name: Install Gradle
+      run: sudo apt-get update && sudo apt-get install -y gradle
 
-    # 5. 上传构建产物（升级到 v4）
+    # 5. 构建 Forge Mod
+    - name: Build mod
+      run: gradle build --no-daemon --refresh-dependencies
+
+    # 6. 上传构建产物
     - name: Upload JAR
       uses: actions/upload-artifact@v4
       with:

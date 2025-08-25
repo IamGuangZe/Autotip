@@ -41,6 +41,7 @@ public class LoginRequest implements Request<LoginReply> {
                 .addParameter("hash", this.hash)
                 .build();
 
+        private Minecraft mc = Minecraft.getMinecraft();
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getName()));
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getId().toString().replace("-", "")));
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.tips));

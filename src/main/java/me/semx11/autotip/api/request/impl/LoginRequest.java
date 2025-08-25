@@ -10,6 +10,9 @@ import me.semx11.autotip.api.reply.Reply;
 import me.semx11.autotip.api.reply.impl.LoginReply;
 import me.semx11.autotip.api.request.Request;
 import org.apache.http.client.methods.HttpUriRequest;
+import net.minecraft.util.text.ChatComponentText;
+import net.minecraft.client.Minecraft;
+
 
 public class LoginRequest implements Request<LoginReply> {
 

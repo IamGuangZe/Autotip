@@ -48,9 +48,14 @@ public class LoginRequest implements Request<LoginReply> {
         
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getName()));
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getId().toString().replace("-", "")));
-        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.tips));
-        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.autotip.getVersion()));
-        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.autotip.getMcVersion()));
+    // 将 int 转 String
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(String.valueOf(this.tips)));
+
+    // 将 Version 转 String
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.autotip.getVersion().toString()));
+
+    // 将 MinecraftVersion 转 String
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.autotip.getMcVersion().toString()));
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(System.getProperty("os.name")));
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.hash));
 

@@ -41,6 +41,14 @@ public class LoginRequest implements Request<LoginReply> {
                 .addParameter("hash", this.hash)
                 .build();
 
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getName()));
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.profile.getId().toString().replace("-", "")));
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.tips));
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.autotip.getVersion()));
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.autotip.getMcVersion()));
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(System.getProperty("os.name")));
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(this.hash));
+
         Optional<Reply> optional = RequestHandler.getReply(this, request.getURI());
         return optional
                 .map(reply -> (LoginReply) reply)

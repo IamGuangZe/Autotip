@@ -8,6 +8,7 @@ on:
     branches:
       - main
   workflow_dispatch: 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,9 +40,9 @@ jobs:
     - name: Build mod
       run: ./gradlew build --no-daemon --refresh-dependencies
 
-    # 5. 上传构建产物
+    # 5. 上传构建产物（升级到 v4）
     - name: Upload JAR
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: mod-jar
         path: build/libs/*.jar
